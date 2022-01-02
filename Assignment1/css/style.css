@@ -1,0 +1,22 @@
+html{
+    margin: 10px;
+}
+
+.container{
+    border: 3px solid darkgrey ; 
+    height: 80vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.box{
+    width: 10rem;
+    height: 10rem;
+    background-color: orange;
+    margin: 10px;
+    border-radius: 10px;
+}
