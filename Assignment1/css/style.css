@@ -10,8 +10,8 @@ html{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-}
+    
+    
 
 .box{
     width: 10rem;
@@ -19,4 +19,5 @@ html{
     background-color: orange;
     margin: 10px;
     border-radius: 10px;
+
 }
