@@ -1,6 +1,51 @@
-html,
-body,
-{
-    margin: 10px;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+header{
+    background-color: rgb(112, 111, 111);
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    color: rgb(53, 52, 52);
+    display: block;
+    
+
+}
+header:hover{
+    display: block;
 }
 
+.sidebar{
+    position: fixed;
+    width: 15%;
+    height: 100vh;
+    background-color: darkgrey;
+}
+
+.sidebar ul{
+    list-style-type:none;
+}
+.sidebar li {
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    border-bottom: 1.5px solid rgb(32, 32, 32);
+    
+}
+a{
+    display: block;
+    text-decoration: none;
+
+}
+a:hover{
+    color: #cea255;
+}
+
+li:hover{
+    display: block;
+    color: rgb(53, 52, 52);
+    background-color: #cea255;
+}
