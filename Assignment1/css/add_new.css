@@ -1,0 +1,78 @@
+html,
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    margin: 0px;
+   
+}
+
+.heading{
+    background-color: darkturquoise;
+    color: #fff;
+    overflow: hidden;
+    margin: 20px;
+    border-radius: 10px;
+}
+.heading h3{
+    text-align: center;
+    margin: 8px;
+
+}
+
+label{
+    display: block;
+    margin: 5px;
+    font-size: 90%;
+    font-weight:700;
+}
+
+.gen-lable{
+    display: inline;
+}
+
+input{
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 5px;
+    padding: 3px 3px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+
+}
+
+
+
+input[type='text']:focus,
+input[type='number']:focus,
+input[type='email']:focus{
+    border-color: darkturquoise;
+    outline: 0;
+    box-shadow: 0 0 0 1px #a7feff;
+    
+}
+
+.input-field{
+    margin: 20px;
+    display: inline-block;
+}
+.input-field p{
+    margin-bottom: 0px;
+    margin-top: 8px;
+}
+
+#btn1,
+#btn2 {
+    margin-left: 10px;
+    margin-top: 20px;
+    padding: 5px 20px;
+    border:0;
+    border-radius: 10px;
+
+}
+#btn1:hover,
+#btn2:hover {
+    background-color: darkturquoise;
+    color: #fff;
+    cursor:pointer;
+
+}
+
+
