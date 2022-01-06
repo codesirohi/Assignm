@@ -20,23 +20,20 @@ function submitData() {
   localStorage.setItem("users", JSON.stringify(userRecords));
   document.getElementById("myForm").reset();
 }
+ 
 
-
-// 
-
-// const page = window.open('sfsdf.html')
 
 
 function buildTable(data){
 var table = document.getElementById('myTable')
-
+table.innerHTML=''
 for (var i = 0; i < data.length; i++){
-  var row = `<tr>
-          <td>${data[i].name}</td>
-          <td>${data[i].age}</td>
-          <td>${data[i].birthdate}</td>
+var row = `<tr>
+        <td>${data[i].ID}</td>
+        <td>${data[i].Name}</td>
+        <td>${data[i].Age}</td>
         </tr>`
-  
+
     table.innerHTML += row
 
 

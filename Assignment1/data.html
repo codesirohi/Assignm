@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/data.css" />
     <script src="script.js"></script>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link
@@ -19,27 +18,23 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-
-
-
   </head>
-  <body onload="buildTable(arrayParameter)">
-
+  <body>
     <div class="nav-bar">
       <div class="search-box">
         <input type="text" class="tbox" placeholder="Search.." />
-        <button class="btn">Search</button>
+        <button class="btn1">Search</button>
       </div>
 
       <div class="options">
-        <button class="btn"><a href="add_new.html"></a> Add</button>
+        <button class="btn1"><a href="add_new.html"></a> Add</button>
       </div>
     </div>
 
     <div class="table">
       <table class="table table-striped">
         <tr class="bg-info">
-          <th>Employee ID</th>
+          <th class="sort" data-column="ID" data-order="desc">Employee ID &#9660</th>
           <th>Employee Name</th>
           <th>Age</th>
         </tr>
@@ -47,15 +42,30 @@
         <tbody id="myTable"></tbody>
       </table>
     </div>
-
-    <script>
-        var retrievedData = localStorage.getItem("users");
-        var arrayParameter = JSON.parse(retrievedData);
-    </script>
-
-
   </body>
 
- 
+  <script>
+    var retrievedData = localStorage.getItem("users");
+    var arrayParameter = JSON.parse(retrievedData);
+    buildTable(arrayParameter);
 
+    $("th").on("click", function () {
+      var column = $(this).data("column");
+      var order = $(this).data("order");
+      console.log("working", column, order);
+
+      if (order == "desc") {
+        $(this).data('order', "asc");
+        arrayParameter = arrayParameter.sort((a, b) =>
+          a[column] > b[column] ? 1 : -1
+        );
+      } else {
+        $(this).data('order', "desc");
+        arrayParameter = arrayParameter.sort((a, b) =>
+          a[column] < b[column] ? 1 : -1
+        );
+      }
+      buildTable(arrayParameter)
+    });
+  </script>
 </html>
