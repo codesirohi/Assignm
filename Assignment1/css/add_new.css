@@ -74,5 +74,8 @@ input[type='email']:focus{
     cursor:pointer;
 
 }
-
+#btn1:active,
+#btn2:active{
+    background-color: rgb(2, 189, 192);
+}
 

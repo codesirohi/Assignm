@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Add/edit page</title>
     <link rel="stylesheet" href="css/add_new.css" />
     <link rel="stylesheet" href="css/normalise.css" />
   </head>
   <body>
-    <form action="#">
+    <form action="#" id="myForm">
       <div class="heading">
         <h3>ADD/EDIT PAGE</h3>
       </div>
@@ -29,23 +29,11 @@
       </div>
 
       <br />
-      <button id="btn1" type="button" onclick="submitData()" id="save-btn">
-        Submit
-      </button>
-      <button id="btn2" type="reset">Clear Data</button>
+      <button type="button" onclick="submitData()" id="btn1">Submit</button>
+      <button type="reset" id="btn2">Clear</button>
     </form>
 
-    <script>
-      function submitData() {
-        let id_ls, user_ls, age_ls;
-        id_ls = document.getElementById("id").value;
-        user_ls = document.getElementById("user").value;
-        age_ls = document.getElementById("age").value;
-
-        localStorage.setItem("ID", id_ls);
-        localStorage.setItem("Name", user_ls);
-        localStorage.setItem("Age", age_ls);
-      }
-    </script>
+    
   </body>
+  <script src="script.js"></script>
 </html>
