@@ -22,9 +22,9 @@
   <body>
     <div class="nav-bar">
       <div class="search-box">
-        <input id="search-input" type="text" class="tbox" placeholder="Search.." />
+        <input id="search-input" type="text" class="tbox" placeholder="Search ID ..." />
         
-      </div>
+      </div> 
 
       <div class="options">
         <button onclick="location.href = 'add_new.html';"  class="btn1">Add</button>
@@ -37,6 +37,7 @@
           <th class="sort" data-column="ID" data-order="desc">Employee ID &#9660</th>
           <th>Employee Name</th>
           <th>Age</th>
+          <th>Options</th>
         </tr>
 
         <tbody id="myTable"></tbody>
@@ -48,6 +49,18 @@
     var retrievedData = localStorage.getItem("users");
     var arrayParameter = JSON.parse(retrievedData);
     buildTable(arrayParameter);
+
+
+    $('#search-input').on('keyup', function(){
+          var value = $(this).val()
+          console.log('value: ', value)
+        
+
+          var data = searchTable(value, arrayParameter);
+          buildTable(data);
+    })
+
+    
 
     $("th").on("click", function () {
       var column = $(this).data("column");
@@ -66,12 +79,9 @@
         );
       }
 
-      $('#search-input').on('keyup', function(){
-
-        
-      })
 
       buildTable(arrayParameter)
     });
+
   </script>
 </html>

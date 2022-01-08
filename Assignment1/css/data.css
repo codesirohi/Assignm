@@ -12,18 +12,18 @@ body {
   display: block;
 }
 
-.table{
-  margin-top: 30px;
+.table {
+  
   border-radius: 10px;
 }
 
 th {
   color: #fff;
 }
-th:hover{
+th:hover {
   cursor: pointer;
 }
-.sort:hover{
+.sort:hover {
   color: rgb(250, 221, 167);
 }
 
@@ -37,24 +37,24 @@ th:hover{
   float: right;
 }
 
+
 .btn1,
 .tbox {
-  
-  margin: 10px;
+  margin-left: 5px;
   padding: 5px 20px;
   border: 0px;
   border-radius: 10px;
 }
+
 
 .btn1:hover {
   cursor: pointer;
   background-color: #fff;
 }
 .btn1:active {
- 
-  
 }
 
 input[type="text"]:focus {
   outline: 0;
+  border: 0px;
 }
