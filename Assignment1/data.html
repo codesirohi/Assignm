@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/normalise.css" />
     <link rel="stylesheet" href="css/data.css" />
     <script src="script.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link
@@ -21,6 +21,7 @@
   </head>
   <body>
     <div class="nav-bar">
+      <button class="home" onclick="location.href = 'index.html';"><i class="fa fa-angle-left"></i></button>
       <div class="search-box">
         <input id="search-input" type="text" class="tbox" placeholder="Search ID ..." />
         
@@ -50,7 +51,7 @@
     var arrayParameter = JSON.parse(retrievedData);
     buildTable(arrayParameter);
 
-
+    //for searching the value
     $('#search-input').on('keyup', function(){
           var value = $(this).val()
           console.log('value: ', value)
@@ -60,18 +61,29 @@
           buildTable(data);
     })
 
+    $(".remove").on("click",function(){
+       var row = $(this).data("testid");
+      console.log(row);
+     
+      // var arrayParameter = deleteItem(row, arrayParameter);
+      // buildTable(arrayParameter);
+
+
+    })
+    
     
 
     $("th").on("click", function () {
       var column = $(this).data("column");
       var order = $(this).data("order");
-      console.log("working", column, order);
+      // console.log("working", column, order);
 
       if (order == "desc") {
         $(this).data('order', "asc");
         arrayParameter = arrayParameter.sort((a, b) =>
           a[column] > b[column] ? 1 : -1
         );
+      
       } else {
         $(this).data('order', "desc");
         arrayParameter = arrayParameter.sort((a, b) =>
@@ -82,6 +94,7 @@
 
       buildTable(arrayParameter)
     });
+
 
   </script>
 </html>

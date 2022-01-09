@@ -21,24 +21,31 @@ function submitData() {
   document.getElementById("myForm").reset();
 }
 
+//if table is empty diable search
+function hide(data) {
+  if (data.length == 0) {
+  }
+}
+
 //build table function
 
 function buildTable(data) {
   var table = document.getElementById("myTable");
   table.innerHTML = "";
   for (var i = 0; i < data.length; i++) {
-    var row = `<tr>
+    var row = `
+    <tr>
         <td>${data[i].ID}</td>
         <td>${data[i].Name}</td>
         <td>${data[i].Age}</td>
         <td>
-        <span>
-          <button class="btn1 list">Edit</button>
-          <button class="btn1 list">Remove</button>
-        </span>
-      </td>
+          <span>
+            <button class="btn1" data-testid="${data[i].ID}">Edit</button>
+            <button class="btn1 remove" data-testid="${data[i].ID}">Remove</button>
+          </span>
+        </td>
 
-        </tr>`;
+    </tr>`;
 
     table.innerHTML += row;
   }
@@ -57,3 +64,30 @@ function searchTable(value, data) {
 
   return filteredData;
 }
+
+// function del(data) {
+//   window.alert("Are you sure?");
+//   // var json = data;
+//   // var key = "foo";
+//   // delete json[key]; // Removes the element from the dictionary.
+// }
+
+//edit the list
+function editItem() {
+  var testid = $(this).val("testid");
+}
+
+//delete an item from the list
+// function deleteItem(key, data1) {
+//   window.alert("Are you sure you want to delete Employee data.");
+
+//   for (var i = 0; i < data1.length; i++) {
+//     console.log(data1[i])
+//     // if (key == data1[i].ID) {
+      
+//     //    delete data1[i];
+//     // }
+//   }
+
+//   return data1;
+// }

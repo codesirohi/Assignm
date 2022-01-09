@@ -7,9 +7,15 @@
     <title>Add/edit page</title>
     <link rel="stylesheet" href="css/add_new.css" />
     <link rel="stylesheet" href="css/normalise.css" />
+    <link rel="stylesheet" href="css/data.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <form action="#" id="myForm">
+    <div class="nav-bar">
+      <button class="home" onclick="location.href = 'data.html';"><i class="fa fa-angle-left"></i></button>
+    </div>
+    <br>
+    <form action="#" id="myForm" autocomplete="off">
       <div class="heading">
         <h3>ADD/EDIT PAGE</h3>
       </div>
@@ -29,7 +35,7 @@
       </div>
 
       <br />
-      <button type="button" onclick="submitData()" id="btn1">Submit</button>
+      <button type="button" onclick="submitData()"  id="btn1">Submit</button>
       <button type="reset" id="btn2">Clear</button>
     </form>
 
