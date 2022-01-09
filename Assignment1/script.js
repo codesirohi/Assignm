@@ -65,29 +65,34 @@ function searchTable(value, data) {
   return filteredData;
 }
 
-// function del(data) {
-//   window.alert("Are you sure?");
-//   // var json = data;
-//   // var key = "foo";
-//   // delete json[key]; // Removes the element from the dictionary.
-// }
+
 
 //edit the list
-function editItem() {
+function editItem(td) {
   var testid = $(this).val("testid");
 }
 
 //delete an item from the list
-// function deleteItem(key, data1) {
-//   window.alert("Are you sure you want to delete Employee data.");
+function deleteItem(key, dataArray) {
+  window.alert("Delete Employee");
 
-//   for (var i = 0; i < data1.length; i++) {
-//     console.log(data1[i])
-//     // if (key == data1[i].ID) {
+  // console.log(key)
+
+  for (var i = 0; i < dataArray.length; i++){
+  
+    if (dataArray[i].ID === key){
       
-//     //    delete data1[i];
-//     // }
-//   }
-
-//   return data1;
-// }
+      //using the splice method because delete method won't reindex 
+      //the elements in the array
+      dataArray.splice(i,1);
+      //updating the deleted element in local storage
+      localStorage.setItem("users", JSON.stringify(dataArray));
+      //reloading the page to refresh the local storage
+      location.reload()
+      return dataArray;
+      
+    }
+  }
+  
+  
+}

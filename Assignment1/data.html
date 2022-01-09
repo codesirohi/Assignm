@@ -61,14 +61,13 @@
           buildTable(data);
     })
 
+
     $(".remove").on("click",function(){
        var row = $(this).data("testid");
-      console.log(row);
-     
-      // var arrayParameter = deleteItem(row, arrayParameter);
-      // buildTable(arrayParameter);
-
-
+      console.log("Delete: ",row);
+      arrayParameter = deleteItem(row, arrayParameter);
+      buildTable(arrayParameter);
+      
     })
     
     
@@ -80,6 +79,7 @@
 
       if (order == "desc") {
         $(this).data('order', "asc");
+        //javascript sorting method
         arrayParameter = arrayParameter.sort((a, b) =>
           a[column] > b[column] ? 1 : -1
         );
