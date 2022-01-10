@@ -35,7 +35,7 @@
     <div class="table">
       <table class="table table-striped">
         <tr class="bg-info">
-          <th class="sort" data-column="ID" data-order="desc">Employee ID &#9660</th>
+          <th class="sort" data-column="ID" data-order="desc" style="display:none">Employee ID &#9660</th>
           <th>Employee Name</th>
           <th>Age</th>
           <th>Options</th>
@@ -64,9 +64,16 @@
 
     $(".remove").on("click",function(){
        var row = $(this).data("testid");
-      console.log("Delete: ",row);
+      console.log(row);
       arrayParameter = deleteItem(row, arrayParameter);
       buildTable(arrayParameter);
+      
+    })
+    $(".edit").on("click",function(){
+       var rowEdit = $(this).data("testid");
+      // console.log(rowEdit);
+      // populateData(rowEdit, arrayParameter);
+      // buildTable(arrayParameter);
       
     })
     
