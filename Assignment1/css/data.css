@@ -84,3 +84,25 @@ input[type="text"]:focus {
   outline: 0;
   border: 0px;
 }
+
+.footer{
+  overflow: hidden;
+  bottom: 0%;
+  display: block;
+  text-align: center;
+  margin: 10px;
+  margin-bottom: 5vh;
+
+}
+
+.footer>button{
+  background-color: transparent;
+  border: 2px solid #52a3b8;
+  color: #52a3b8;
+}
+
+.footer>button:hover{
+  border: none;
+  background-color: #52a3b8;
+  color: #fff;
+}

@@ -36,9 +36,10 @@ function hide(data) {
 function buildTable(data) {
   var table = document.getElementById("myTable");
   table.innerHTML = "";
-  
-  // var data = pagination(state.queryset, state.page, state.row)
 
+  
+
+  // var data = pagination(state.queryset, state.page, state.row)
 
   for (var i = 0; i < data.length; i++) {
     var row = `
@@ -61,7 +62,7 @@ function buildTable(data) {
 }
 
 function onedit(id) {
-  let url = "add_new.html?id="+id;
+  let url = "add_new.html?id=" + id;
 
   // setTimeout(function () {
   //   window.location = url;
@@ -73,10 +74,9 @@ function onedit(id) {
   // // console.log(userRec)
   for (var i = 0; i < userRec.length; i++) {
     if (userRec[i].ID === id) {
-
-      console.log(typeof(userRec[i].ID), userRec[i].ID)
-      console.log(typeof(userRec[i].Name),userRec[i].Name)
-      console.log(typeof(userRec[i].Age), userRec[i].Age)
+      console.log(typeof userRec[i].ID, userRec[i].ID);
+      console.log(typeof userRec[i].Name, userRec[i].Name);
+      console.log(typeof userRec[i].Age, userRec[i].Age);
 
       // document.getElementById("id").value = userRec[i].ID;
       // document.getElementById("user").value = userRec[i].Name;
@@ -138,7 +138,7 @@ function searchTable(value, data) {
 
 // }
 
-//edit the list
+
 
 //delete an item from the list
 function deleteItem(key, dataArray) {
@@ -161,23 +161,24 @@ function deleteItem(key, dataArray) {
   }
 }
 
+var state = 
+  {
+    queryset: data,
+    page: 1,
+    row: 8,
+  };
 
-var state ={
-  'queryset': JSON.parse(localStorage.getItem("users")),
-  'page': 1,
-  'row':6
+
+function pagination(queryset, page, row) {
+  var trimStart = (page - 1) * row;
+  var trimEnd = trimStart + row;
+  var trimmedData = queryset.slice(trimStart, trimEnd);
+  var pages = Math.ceil(queryset.length / row);
+
+  return {
+    queryset: trimmedData,
+    pages: pages,
+  };
+	
 }
 
-function pagination(queryset, page, row){
-
-    var trimStart = (page -1)*row;
-    var trimEnd = trimStart + row;
-    var trimmedData = queryset.slice(trimStart,trimEnd);
-    var pages = Math.ceil(queryset.length / row)
-
-    return{
-      'queryset': trimmedData,
-      'pages': pages
-    }
-
-}

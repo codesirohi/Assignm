@@ -36,20 +36,35 @@
       <table class="table table-striped">
         <tr class="bg-info">
           <th class="sort" data-column="ID" data-order="desc" style="display:none">Employee ID &#9660</th>
-          <th>Employee Name</th>
-          <th>Age</th>
+          <th class="sort" data-column="Name" data-order="desc">Employee Name</th>
+          <th class="sort" data-column="Age" data-order="desc">Age</th>
           <th>Options</th>
         </tr>
 
         <tbody id="myTable"></tbody>
       </table>
     </div>
+
+    
+    <div class="footer">
+        <button class="btn1">First</button>
+        <button class="btn1">&#9668</button>
+        <button class="btn1">&#9656</button>
+        <button class="btn1" onclick="last()">Last</button>
+    </div>
+    
   </body>
 
   <script>
     var retrievedData = localStorage.getItem("users");
     var arrayParameter = JSON.parse(retrievedData);
+    
+    
+
+    // var data = pagination(state.queryset, state.page, state.row)
     buildTable(arrayParameter);
+
+
 
     //for searching the value
     $('#search-input').on('keyup', function(){
@@ -81,8 +96,8 @@
 
     $("th").on("click", function () {
       var column = $(this).data("column");
-      var order = $(this).data("order");
-      // console.log("working", column, order);
+      var order = $(this).data("order"); 
+      console.log("working", column, order);
 
       if (order == "desc") {
         $(this).data('order', "asc");
