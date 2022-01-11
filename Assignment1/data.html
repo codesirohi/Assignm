@@ -1,122 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listing Page</title>
 
-    <link rel="stylesheet" href="css/normalise.css" />
-    <link rel="stylesheet" href="css/data.css" />
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listing Page</title>
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <div class="nav-bar">
-      <button class="home" onclick="location.href = 'index.html';"><i class="fa fa-angle-left"></i></button>
-      <div class="search-box">
-        <input id="search-input" type="text" class="tbox" placeholder="Search ID ..." />
-        
-      </div> 
+  <link rel="stylesheet" href="css/normalise.css" />
+  <link rel="stylesheet" href="css/data.css" />
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-      <div class="options">
-        <button onclick="location.href = 'add_new.html';"  class="btn1">Add</button>
-      </div>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="nav-bar">
+    <button class="home" onclick="location.href = 'index.html';"><i class="fa fa-angle-left"></i></button>
+    <div class="search-box">
+      <input id="search-input" type="text" class="tbox" placeholder="Search ID ..." />
+
     </div>
 
-    <div class="table">
-      <table class="table table-striped">
-        <tr class="bg-info">
-          <th class="sort" data-column="ID" data-order="desc" style="display:none">Employee ID &#9660</th>
-          <th class="sort" data-column="Name" data-order="desc">Employee Name</th>
-          <th class="sort" data-column="Age" data-order="desc">Age</th>
-          <th>Options</th>
-        </tr>
-
-        <tbody id="myTable"></tbody>
-      </table>
+    <div class="options">
+      <button onclick="location.href = 'add_new.html';" class="btn1">Add</button>
     </div>
+  </div>
 
-    
-    <div class="footer">
-        <button class="btn1">First</button>
-        <button class="btn1">&#9668</button>
-        <button class="btn1">&#9656</button>
-        <button class="btn1" onclick="last()">Last</button>
-    </div>
-    
-  </body>
+  <div class="table">
+    <table class="table table-striped">
+      <tr class="bg-info">
+        <th class="sort" data-column="ID" data-order="desc" style="display:none">Employee ID &#9660</th>
+        <th class="sort" data-column="Name" data-order="desc">Employee Name</th>
+        <th class="sort" data-column="Age" data-order="desc">Age</th>
+        <th>Options</th>
+      </tr>
 
-  <script>
-    var retrievedData = localStorage.getItem("users");
-    var arrayParameter = JSON.parse(retrievedData);
-    
-    
+      <tbody id="myTable"></tbody>
+    </table>
+  </div>
 
-    // var data = pagination(state.queryset, state.page, state.row)
+
+  <div class="footer">
+    <button class="btn1" onclick="firstPage()">First</button>
+    <button class="btn1" onclick="prev()">&#9668</button>
+    <button class="btn1" onclick="next()">&#9656</button>
+    <button class="btn1" onclick="lastPage()">Last</button>
+  </div>
+
+</body>
+
+<script>
+  let retrievedData = localStorage.getItem("users");
+  let arrayParameter = JSON.parse(retrievedData);
+  let trimmedData = pagination(arrayParameter, page, row)
+  buildTable(trimmedData);
+
+
+  function firstPage() {
+    page = 1;
+    let trimmed_data = pagination(arrayParameter, page, row)
+    console.log('first page')
+    buildTable(trimmed_data);
+
+  }
+
+  function lastPage() {
+    page = pages;
+
+    let trimmed_data = pagination(arrayParameter, page, row);
+    console.log('last page')
+    buildTable(trimmed_data);
+
+  }
+
+  function next() {
+    if (page < pages) {
+      page = page + 1;
+      let trimmed_data = pagination(arrayParameter, page, row)
+      console.log('next page')
+      buildTable(trimmed_data);
+    }
+
+  }
+
+  function prev() {
+    if (page > 1) {
+      page = page - 1;
+      let trimmed_data = pagination(arrayParameter, page, row)
+      console.log('prev page')
+      buildTable(trimmed_data);
+    }
+  }
+
+
+
+
+  //for searching the value
+  $('#search-input').on('keyup', function () {
+    var value = $(this).val()
+    console.log('value: ', value)
+
+
+    var data = searchTable(value, arrayParameter);
+    buildTable(data);
+  })
+
+
+  $(".remove").on("click", function () {
+    var row = $(this).data("testid");
+    console.log(row);
+    arrayParameter = deleteItem(row, arrayParameter);
     buildTable(arrayParameter);
 
+  })
+  $(".edit").on("click", function () {
+    var rowEdit = $(this).data("testid");
+    // console.log(rowEdit);
+    // populateData(rowEdit, arrayParameter);
+    // buildTable(arrayParameter);
+
+  })
 
 
-    //for searching the value
-    $('#search-input').on('keyup', function(){
-          var value = $(this).val()
-          console.log('value: ', value)
-        
 
-          var data = searchTable(value, arrayParameter);
-          buildTable(data);
-    })
+  $("th").on("click", function () {
+    var column = $(this).data("column");
+    var order = $(this).data("order");
+    console.log("working", column, order);
 
+    if (order == "desc") {
+      $(this).data('order', "asc");
+      //javascript sorting method
+      arrayParameter = arrayParameter.sort((a, b) =>
+        a[column] > b[column] ? 1 : -1
+      );
 
-    $(".remove").on("click",function(){
-       var row = $(this).data("testid");
-      console.log(row);
-      arrayParameter = deleteItem(row, arrayParameter);
-      buildTable(arrayParameter);
-      
-    })
-    $(".edit").on("click",function(){
-       var rowEdit = $(this).data("testid");
-      // console.log(rowEdit);
-      // populateData(rowEdit, arrayParameter);
-      // buildTable(arrayParameter);
-      
-    })
-    
-    
-
-    $("th").on("click", function () {
-      var column = $(this).data("column");
-      var order = $(this).data("order"); 
-      console.log("working", column, order);
-
-      if (order == "desc") {
-        $(this).data('order', "asc");
-        //javascript sorting method
-        arrayParameter = arrayParameter.sort((a, b) =>
-          a[column] > b[column] ? 1 : -1
-        );
-      
-      } else {
-        $(this).data('order', "desc");
-        arrayParameter = arrayParameter.sort((a, b) =>
-          a[column] < b[column] ? 1 : -1
-        );
-      }
+    } else {
+      $(this).data('order', "desc");
+      arrayParameter = arrayParameter.sort((a, b) =>
+        a[column] < b[column] ? 1 : -1
+      );
+    }
 
 
-      buildTable(arrayParameter)
-    });
+    buildTable(arrayParameter)
+  });
 
 
-  </script>
+</script>
+
 </html>

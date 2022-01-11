@@ -135,24 +135,23 @@ function deleteItem(key, dataArray) {
   }
 }
 
-// var state = 
-//   {
-//     queryset: data,
-//     page: 1,
-//     row: 8,
-//   };
 
 
-// function pagination(queryset, page, row) {
-//   var trimStart = (page - 1) * row;
-//   var trimEnd = trimStart + row;
-//   var trimmedData = queryset.slice(trimStart, trimEnd);
-//   var pages = Math.ceil(queryset.length / row);
 
-//   return {
-//     queryset: trimmedData,
-//     pages: pages,
-//   };
+let queryset= [];
+let page = 1;
+const row = 8;
+let pages = 1;
+
+
+function pagination(queryset, page, row) {
+  var trimStart = (page - 1) * row;
+  var trimEnd = trimStart + row;
+  var trimmedData = queryset.slice(trimStart, trimEnd);
+  var pagesNo = Math.ceil(queryset.length / row);
+  pages= pagesNo;
+  
+  return trimmedData;    
 	
-// }
+}
 
