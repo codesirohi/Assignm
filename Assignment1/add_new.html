@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="css/add_new.css" />
     <link rel="stylesheet" href="css/normalise.css" />
     <link rel="stylesheet" href="css/data.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="script.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div class="nav-bar">
-      <button class="home" onclick="location.href = 'data.html';"><i class="fa fa-angle-left"></i></button>
+      <button class="home" onclick="location.href = 'data.html';">
+        <i class="fa fa-angle-left"></i>
+      </button>
     </div>
-    <br>
+    <br />
     <form action="#" id="myForm" autocomplete="off">
       <div class="heading">
         <h3>ADD/EDIT PAGE</h3>
@@ -35,12 +41,59 @@
       </div>
 
       <br />
-      <button type="button" onclick="submitData()"  id="btn1">Submit</button>
-      <button type="button" onclick="populateData()"  id="btn1">Update</button>
+      <button type="button" onclick="submitData()" id="btn1">Submit</button>
+      <button type="button" onclick="updateData()" id="btn1">Update</button>
       <button type="reset" id="btn2">Clear</button>
     </form>
+  </body>
+
+  <script type="text/javascript">
+    window.onload = pageload;
+
+    //document.addEventListener('DOMContentLoaded', pageload, false);
+
+    //pageload();
+
+    function pageload() {
+      const urlParams = new URLSearchParams(location.search);
+      let emp_id = 0;
+
+      //console.log('onload');
+      //console.log(urlParams);
+
+      for (const [key, value] of urlParams) {
+        console.log(`${key}:${value}`);
+        console.log(`${value}`);
+        console.log(`${key}`);
+        if (`${key}` === "id") {
+          console.log("inside loop");
+          emp_id = parseInt(`${value}`);
+          break;
+        }
+      }
+
+      console.log("emp id to be searched is :" + emp_id);
+
+      var userRec = JSON.parse(localStorage.getItem("users"));
+
+      for (var i = 0; i < userRec.length; i++) {
+        if (userRec[i].ID == emp_id) {
+          // console.log(typeof userRec[i].ID, userRec[i].ID);
+          // console.log(typeof userRec[i].Name, userRec[i].Name);
+          // console.log(typeof userRec[i].Age, userRec[i].Age);
+
+          document.getElementById("id").value = userRec[i].ID;
+          document.getElementById("user").value = userRec[i].Name;
+          document.getElementById("age").value = userRec[i].Age;
+
+          return;
+        }
+      }
+    }
 
     
-  </body>
-  <script src="script.js"></script>
+
+
+
+  </script>
 </html>

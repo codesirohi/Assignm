@@ -64,28 +64,15 @@ function buildTable(data) {
 function onedit(id) {
   let url = "add_new.html?id=" + id;
 
-  // setTimeout(function () {
-  //   window.location = url;
-  // }, 500);
+  setTimeout(function () {
+    window.location = url;
+  }, 500);
 
-  console.log(id);
+  // console.log(id);
 
-  var userRec = JSON.parse(localStorage.getItem("users"));
-  // // console.log(userRec)
-  for (var i = 0; i < userRec.length; i++) {
-    if (userRec[i].ID === id) {
-      console.log(typeof userRec[i].ID, userRec[i].ID);
-      console.log(typeof userRec[i].Name, userRec[i].Name);
-      console.log(typeof userRec[i].Age, userRec[i].Age);
-
-      // document.getElementById("id").value = userRec[i].ID;
-      // document.getElementById("user").value = userRec[i].Name;
-      // document.getElementById("age").value = userRec[i].Age;
-
-      return;
-    }
+  
+  // // // console.log(userRec)
   }
-}
 
 ///search function
 function searchTable(value, data) {
@@ -103,42 +90,29 @@ function searchTable(value, data) {
   return filteredData;
 }
 
-// function populateData(val, dataArray1) {
+function updateData(){
 
-//   val = val.toString();
+  let tempId = document.getElementById("id").value;
+  let tempUser = document.getElementById("user").value;
+  let tempAge = document.getElementById("age").value;
+  let userRecTemp = JSON.parse(localStorage.getItem("users"));
 
-//   for (var i = 0; i < dataArray1.length; i++) {
-//     if (dataArray1[i].ID === val) {
-//       // window.open("add_new.html");
+  for (var i = 0; i < userRecTemp.length; i++) {
+  if (userRecTemp[i].ID == tempId) {
+    
+    console.log(typeof(tempId),typeof(tempUser), typeof(tempAge))
+    userRecTemp.splice(i, 1,{ID: tempId, Name: tempUser, Age: tempAge});
 
-//       document.getElementById("id").value = dataArray1[i].ID;
-//       document.getElementById("user").value = dataArray1[i].Name;
-//       document.getElementById("age").value = dataArray1[i].Age;
+    // userRecTemp[i].ID = tempId;
+    // userRecTemp[i].Name = tempUser;
+    // userRecTemp[i].Age = tempAge;
 
-//       return;
-//     }
-//   }
-// }
+    localStorage.setItem("users", JSON.stringify(userRecTemp));
+    document.getElementById("myForm").reset();
+  }
+}
 
-// function updateData(){
-
-//   let idUp, userUp, ageUp;
-
-//   idUp = document.getElementById("id").value;
-//   userUp = document.getElementById("user").value;
-//   ageUp = document.getElementById("age").value;
-
-//   var retData = localStorage.getItem("users");
-//   var arrParameter = JSON.parse(retData);
-
-//   for (var i = 0; i < arrParameter.length; i++) {
-//      if (arrParameter[i].ID === idUp){
-//        console.log(id_ls);
-//      }
-
-// }
-
-
+}
 
 //delete an item from the list
 function deleteItem(key, dataArray) {
@@ -161,24 +135,24 @@ function deleteItem(key, dataArray) {
   }
 }
 
-var state = 
-  {
-    queryset: data,
-    page: 1,
-    row: 8,
-  };
+// var state = 
+//   {
+//     queryset: data,
+//     page: 1,
+//     row: 8,
+//   };
 
 
-function pagination(queryset, page, row) {
-  var trimStart = (page - 1) * row;
-  var trimEnd = trimStart + row;
-  var trimmedData = queryset.slice(trimStart, trimEnd);
-  var pages = Math.ceil(queryset.length / row);
+// function pagination(queryset, page, row) {
+//   var trimStart = (page - 1) * row;
+//   var trimEnd = trimStart + row;
+//   var trimmedData = queryset.slice(trimStart, trimEnd);
+//   var pages = Math.ceil(queryset.length / row);
 
-  return {
-    queryset: trimmedData,
-    pages: pages,
-  };
+//   return {
+//     queryset: trimmedData,
+//     pages: pages,
+//   };
 	
-}
+// }
 
