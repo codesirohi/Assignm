@@ -5,7 +5,7 @@ Employee and Department data management solution.
 
 ## Features
 
-- Session Storage is used as storage.
+- Local Storage is used as storage.
 - Pagination, Sorting, Searching.
 - Add/Edit feature.
 - Facility to delete records.
