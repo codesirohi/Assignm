@@ -66,7 +66,7 @@ function onedit(id) {
 
   setTimeout(function () {
     window.location = url;
-  }, 500);
+  }, 200);
 
   // console.log(id);
 
