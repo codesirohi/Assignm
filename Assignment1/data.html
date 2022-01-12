@@ -105,25 +105,31 @@
     console.log('value: ', value)
 
 
-    var data = searchTable(value, arrayParameter);
-    buildTable(data);
+    let data = searchTable(value, arrayParameter);
+    let trimmed_data = pagination(data, page, row)
+    page = 1;
+    buildTable(trimmed_data);
+    
   })
 
-
+  page = 1;
   $(".remove").on("click", function () {
     var row = $(this).data("testid");
     console.log(row);
-    arrayParameter = deleteItem(row, arrayParameter);
-    buildTable(arrayParameter);
-
-  })
-  $(".edit").on("click", function () {
-    var rowEdit = $(this).data("testid");
-    // console.log(rowEdit);
-    // populateData(rowEdit, arrayParameter);
+    arrayPar = deleteItem(row, arrayParameter);
+    let trimmed_data = pagination(arrayPar, page, row)
+    page = 1;
+    buildTable(trimmed_data);
     // buildTable(arrayParameter);
 
   })
+  // $(".edit").on("click", function () {
+  //   var rowEdit = $(this).data("testid");
+  //   // console.log(rowEdit);
+  //   // populateData(rowEdit, arrayParameter);
+  //   // buildTable(arrayParameter);
+
+  // })
 
 
 
@@ -146,8 +152,11 @@
       );
     }
 
+    let trimmed_data = pagination(arrayParameter, page, row)
+    page = 1;
+    buildTable(trimmed_data);
 
-    buildTable(arrayParameter)
+    
   });
 
 
